@@ -1,0 +1,252 @@
+.slider-section {
+  padding: 100px 20px;
+  background-color: #020617; /* Matches the dark theme */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.slider-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 900px;
+}
+
+.slider-header h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #fff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1090px; /* Reduced from 1100px */
+  margin: 0 auto;
+}
+
+.slider-wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 640px; /* Reduced from 650px */
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(50px);
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.card-outer {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: none; /* Removed border */
+}
+
+.card-outer:hover {
+  transform: translateY(-10px);
+}
+
+.image-container {
+  width: 100%;
+  height: 490px; /* Reduced from 500px */
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+
+.card-outer:hover .image-container img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 45px 40px; /* Reduced top/bottom padding to save 10px height total */
+  background: #0f172a; /* Dark background for the text area */
+  text-align: center;
+  border-top: none; /* Removed separator */
+}
+
+.card-date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.highlight {
+  color: #38bdf8;
+}
+
+.card-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  color: #ffffff; /* Contrast! */
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-content p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #94a3b8; /* Light grey text for readability */
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 30px; /* Added bottom margin */
+}
+
+.slide-btn {
+  padding: 16px 32px;
+  background: #38bdf8;
+  color: #020617;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+}
+
+.slide-btn:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
+}
+
+.slide-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.slide-btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* Navigation Buttons - Elegant & Precise */
+.nav-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(12px);
+}
+
+.nav-btn:hover {
+  background: rgba(56, 189, 248, 0.4);
+  border-color: #38bdf8;
+  color: white;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+.nav-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+.prev {
+  left: -40px;
+}
+
+.next {
+  right: -40px;
+}
+
+/* Dots - Modern Bar Style */
+.dot-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.dot {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border-radius: 2px;
+}
+
+.dot.active {
+  background: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+@media (max-width: 1300px) {
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+  }
+  .prev { left: -10px; }
+  .next { right: -10px; }
+}
+
+@media (max-width: 768px) {
+  .slider-section { padding: 60px 20px; }
+  .image-container { height: 350px; }
+  .nav-btn { display: none; } /* Better for touch */
+  .card-content { padding: 30px 20px; }
+}
