@@ -12,24 +12,21 @@ const ImageDropZone = ({ value, onChange }) => {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef();
 
-  const handleFile = async (file) => {
+  const handleFile = (file) => {
     if (!file || !file.type.startsWith('image/')) return;
     setUploading(true);
-    const formData = new FormData();
-    formData.append('image', file);
-    try {
-      const res = await fetch(`${API_BASE}/api/upload-image/`, { method: 'POST', body: formData });
-      const data = await res.json();
-      if (data.url) {
-        const fullUrl = `${API_BASE}${data.url}`;
-        setPreview(fullUrl);
-        onChange(fullUrl);
-      }
-    } catch (err) {
-      alert('Rasm yuklashda xato yuz berdi');
-    } finally {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const base64 = e.target.result;
+      setPreview(base64);
+      onChange(base64);
       setUploading(false);
-    }
+    };
+    reader.onerror = () => {
+      alert('Rasm o\'qishda xato yuz berdi');
+      setUploading(false);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (

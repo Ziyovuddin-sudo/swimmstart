@@ -7,7 +7,7 @@ class Coach(models.Model):
     experience = models.CharField(max_length=50)
     specialization = models.TextField()
     achievements = models.TextField()
-    image = models.CharField(max_length=255) # URL or path to image in static
+    image = models.TextField(blank=True, default='') # URL, path, or base64 image data
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
 

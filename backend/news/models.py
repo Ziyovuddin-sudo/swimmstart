@@ -4,7 +4,7 @@ from django.utils import timezone
 class News(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.CharField(max_length=255) # URL or path to image
+    image = models.TextField(blank=True, default='') # URL, path, or base64 image data
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
 
