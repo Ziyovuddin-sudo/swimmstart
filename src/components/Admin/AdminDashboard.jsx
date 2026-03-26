@@ -1,8 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCoaches } from '../../context/CoachContext';
 import { useNews } from '../../context/NewsContext';
 import './Admin.css';
+
+const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:8000' : 'https://swimmstart-uz.onrender.com';
+
+const ImageDropZone = ({ value, onChange }) => {
+  const [isDragging, setIsDragging] = useState(false);
+  const [preview, setPreview] = useState(value || '');
+  const [uploading, setUploading] = useState(false);
+  const inputRef = useRef();
+
+  const handleFile = async (file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('image', file);
+    try {
+      const res = await fetch(`${API_BASE}/api/upload-image/`, { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.url) {
+        const fullUrl = `${API_BASE}${data.url}`;
+        setPreview(fullUrl);
+        onChange(fullUrl);
+      }
+    } catch (err) {
+      alert('Rasm yuklashda xato yuz berdi');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div
+      className={`image-dropzone ${isDragging ? 'dragging' : ''} ${preview ? 'has-preview' : ''}`}
+      onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleFile(e.dataTransfer.files[0]); }}
+      onClick={() => inputRef.current.click()}
+    >
+      <input ref={inputRef} type="file" accept="image/*" hidden onChange={(e) => handleFile(e.target.files[0])} />
+      {uploading ? (
+        <div className="drop-label">⏳ Yuklanmoqda...</div>
+      ) : preview ? (
+        <div className="drop-preview">
+          <img src={preview} alt="preview" />
+          <span className="drop-change-hint">Rasmni o'zgartirish uchun bosing yoki tashlab qo'ying</span>
+        </div>
+      ) : (
+        <div className="drop-label">
+          <span className="drop-icon">🖼️</span>
+          <span>Rasmni bu yerga suring yoki bosing</span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const AdminDashboard = () => {
   const { coaches, archivedCoaches, addCoach, deleteCoach, restoreCoach, fetchArchivedCoaches, loading: coachesLoading } = useCoaches();
@@ -131,10 +185,7 @@ const AdminDashboard = () => {
                   </div>
                   <div className="form-group">
                     <label>Фотография</label>
-                    <div className="input-wrapper">
-                      <input type="text" placeholder="URL фотографии или путь" value={newCoach.image} onChange={(e) => setNewCoach({...newCoach, image: e.target.value})} required />
-                      <span className="input-icon">🖼️</span>
-                    </div>
+                    <ImageDropZone value={newCoach.image} onChange={(url) => setNewCoach({...newCoach, image: url})} />
                   </div>
                   <button type="submit" className="btn-add">Добавить тренера</button>
                 </form>
@@ -190,10 +241,7 @@ const AdminDashboard = () => {
                   </div>
                   <div className="form-group">
                     <label>Фотография</label>
-                    <div className="input-wrapper">
-                      <input type="text" placeholder="URL фотографии или путь" value={newNews.image} onChange={(e) => setNewNews({...newNews, image: e.target.value})} required />
-                      <span className="input-icon">🖼️</span>
-                    </div>
+                    <ImageDropZone value={newNews.image} onChange={(url) => setNewNews({...newNews, image: url})} />
                   </div>
                   <button type="submit" className="btn-add">Добавить новость</button>
                 </form>
