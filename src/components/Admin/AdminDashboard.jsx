@@ -39,16 +39,26 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
-  const handleCoachSubmit = (e) => {
+  const handleCoachSubmit = async (e) => {
     e.preventDefault();
-    addCoach(newCoach);
-    setNewCoach({ name: '', role: '', experience: '', specialization: '', achievements: '', image: '' });
+    try {
+      await addCoach(newCoach);
+      setNewCoach({ name: '', role: '', experience: '', specialization: '', achievements: '', image: '' });
+      alert('Тренер успешно добавлен!');
+    } catch (err) {
+      alert('Ошибка при добавлении тренера. Проверьте подключение к серверу.');
+    }
   };
 
-  const handleNewsSubmit = (e) => {
+  const handleNewsSubmit = async (e) => {
     e.preventDefault();
-    addNews(newNews);
-    setNewNews({ title: '', description: '', image: '' });
+    try {
+      await addNews(newNews);
+      setNewNews({ title: '', description: '', image: '' });
+      alert('Новость успешно добавлена!');
+    } catch (err) {
+      alert('Ошибка при добавлении новости. Проверьте подключение к серверу.');
+    }
   };
 
   const isAdmin = localStorage.getItem('swimmstart_admin') === 'true';

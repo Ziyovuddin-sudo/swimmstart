@@ -3,13 +3,13 @@
   background-color: #020617;
   color: #ffffff;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
 }
 
 .coaches-container {
   max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .section-header {
@@ -53,33 +53,39 @@
   line-height: 1.6;
 }
 
-.coaches-grid {
-  display: flex;
+/* Wrapper to isolate horizontal scroll */
+.coaches-grid-wrapper {
+  width: 100%;
   overflow-x: auto;
-  gap: 30px;
-  padding: 20px 10px 40px; /* margin for scrollbar */
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: #38bdf8 rgba(15, 23, 42, 0.6);
 }
 
-.coaches-grid::-webkit-scrollbar {
+.coaches-grid-wrapper::-webkit-scrollbar {
   height: 8px;
 }
 
-.coaches-grid::-webkit-scrollbar-track {
+.coaches-grid-wrapper::-webkit-scrollbar-track {
   background: rgba(15, 23, 42, 0.6);
   border-radius: 10px;
 }
 
-.coaches-grid::-webkit-scrollbar-thumb {
+.coaches-grid-wrapper::-webkit-scrollbar-thumb {
   background: #38bdf8;
   border-radius: 10px;
 }
 
+.coaches-grid {
+  display: flex;
+  gap: 30px;
+  padding: 20px 10px 40px;
+  scroll-snap-type: x mandatory;
+  width: max-content;
+}
+
 .coach-card {
-  flex: 0 0 380px; /* Fixed width for scrolling cards */
+  flex: 0 0 380px;
   scroll-snap-align: start;
   background: rgba(15, 23, 42, 0.6);
   border-radius: 24px;
@@ -198,11 +204,46 @@
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  .coaches-section {
+    padding: 60px 0;
   }
-  
+
+  .section-header {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+    word-break: break-word;
+  }
+
+  .section-desc {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .coaches-grid {
+    padding: 20px 20px 30px;
+  }
+
   .coach-card {
-    flex: 0 0 calc(100vw - 60px); /* Fill most of viewport on mobile */
+    flex: 0 0 calc(100vw - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .coach-card {
+    flex: 0 0 calc(100vw - 40px);
   }
 }

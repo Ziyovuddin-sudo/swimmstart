@@ -66,7 +66,7 @@ const Footer = () => {
                 <li><a href="tel:+998947722295">+998 94-772-22-95</a></li>
                 <li><a href="tel:+998781133337">+998 78-113-33-37</a></li>
                 <li><a href="mailto:swimmstart.uz@gmail.com">swimmstart.uz@gmail.com</a></li>
-                <li> ул. Мустакиллик, 2,<br/>Ташкент</li>
+                <li>Бойкургон 2</li>
               </ul>
             </div>
           </div>

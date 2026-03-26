@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: swimmstart-backend
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn swimmstart_backend.wsgi"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.0
+      - key: DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: swimmstart-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: "*"

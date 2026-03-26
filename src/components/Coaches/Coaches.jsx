@@ -19,30 +19,32 @@ const Coaches = ({ onOpenModal }) => {
           </p>
         </div>
 
-        <div className="coaches-grid">
-          {coaches.map((coach) => (
-            <div key={coach.id} className="coach-card">
-              <div className="coach-image-wrapper">
-                <img src={coach.image} alt={coach.name} className="coach-image" />
-                <div className="coach-overlay">
-                  <button className="btn-coach-action" onClick={() => onOpenModal(`Тренировка с ${coach.name}`)}>
-                    Записаться к тренеру
-                  </button>
+        <div className="coaches-grid-wrapper">
+          <div className="coaches-grid">
+            {coaches.map((coach) => (
+              <div key={coach.id} className="coach-card">
+                <div className="coach-image-wrapper">
+                  <img src={coach.image} alt={coach.name} className="coach-image" />
+                  <div className="coach-overlay">
+                    <button className="btn-coach-action" onClick={() => onOpenModal(`Тренировка с ${coach.name}`)}>
+                      Записаться к тренеру
+                    </button>
+                  </div>
+                </div>
+                <div className="coach-info">
+                  <div className="coach-header">
+                    <h3 className="coach-name">{coach.name}</h3>
+                    <span className="coach-experience">{coach.experience}</span>
+                  </div>
+                  <p className="coach-role">{coach.role}</p>
+                  <div className="coach-details">
+                    <p><strong>Специализация:</strong> {coach.specialization}</p>
+                    <p><strong>Достижения:</strong> {coach.achievements}</p>
+                  </div>
                 </div>
               </div>
-              <div className="coach-info">
-                <div className="coach-header">
-                  <h3 className="coach-name">{coach.name}</h3>
-                  <span className="coach-experience">{coach.experience}</span>
-                </div>
-                <p className="coach-role">{coach.role}</p>
-                <div className="coach-details">
-                  <p><strong>Специализация:</strong> {coach.specialization}</p>
-                  <p><strong>Достижения:</strong> {coach.achievements}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

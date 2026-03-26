@@ -119,6 +119,9 @@
 }
 
 @media (max-width: 768px) {
+  .news-scroll-section {
+    padding: 60px 20px;
+  }
   .news-scroll-card {
     flex: 0 0 calc(100vw - 60px);
   }

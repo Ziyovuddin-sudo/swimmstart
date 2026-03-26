@@ -65,44 +65,58 @@
   z-index: 1;
 }
 
+/* Slide Content shared across all slides */
 .slide-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 1000px;
-  padding: 0 40px;
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(40px);
 }
 
 .hero-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(2rem, 7.5vw, 5.5rem);
   font-weight: 800;
   margin-bottom: 1.5rem;
-  line-height: 0.85;
+  line-height: 1.1;
   background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -2px;
+  letter-spacing: normal;
   text-align: center;
   width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0 0.2rem; /* Add horizontal padding to prevent clip */
+  display: block;
 }
 
-/* Animation for active slide content */
 .slide.active .hero-title {
   animation: fadeInDown 1.2s ease-out forwards;
 }
 
-/* Animation for active slide content */
 .hero .hero-description {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.2rem, 3.5vw, 1.8rem);
   color: #ffffff !important;
   line-height: 1.4;
   max-width: 850px;
-  margin: 0 auto 40px; /* Added margin for button */
+  margin: 0 auto 40px;
   text-align: center;
   display: block;
+}
+
+.slide.active .hero-description {
+  animation: fadeInUp 1.4s ease-out forwards;
 }
 
 .hero-cta {
@@ -146,26 +160,6 @@
   transform: translateX(8px);
 }
 
-.slide.active .hero-description {
-  animation: fadeInUp 1.4s ease-out forwards;
-}
-
-/* Ensure slide-content is also centered horizontally across the full viewport */
-.slide-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 40px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(40px); /* Move content down as requested */
-}
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -188,24 +182,56 @@
   }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
+@media (max-width: 768px) {
+  .slide-content {
+    padding: 0 15px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .hero-title {
+    font-size: clamp(1.6rem, 10vw, 3.2rem); /* Slightly reduced max size */
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px; /* Reduced negative spacing */
+    line-height: 1.1;
+    padding: 0 0.3rem; /* Extra safety for mobile */
+  }
+  
+  .hero-description {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    max-width: 100%;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .hero-cta {
+    padding: 16px 32px;
+    font-size: 1rem;
+    width: auto;
+    min-width: 200px;
+    justify-content: center;
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+@media (max-width: 480px) {
+  .hero {
+    height: calc(100vh - 100px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .slide-content {
+    width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+  .hero-title {
+    font-size: clamp(1.2rem, 12vw, 2.1rem); /* Further adjusted for tiny screens */
+    letter-spacing: 0; /* Reset spacing */
+    padding: 0 0.5rem; /* Max safety */
+  }
+  .hero .hero-description {
+    font-size: clamp(0.8rem, 3.8vw, 1rem);
+    line-height: 1.5;
+    max-width: 100%;
+    margin-bottom: 15px;
   }
 }
