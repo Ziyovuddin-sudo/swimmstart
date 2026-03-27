@@ -21,12 +21,12 @@ const NewsPage = () => {
       <section className="news-grid-section">
         <div className="container">
           <div className="news-grid">
-            {news.map((item) => (
+            {(Array.isArray(news) ? news : []).map((item) => (
               <div key={item.id} className="news-card">
                 <div className="news-card-image">
                   <img src={item.image} alt={item.title} />
                   <div className="news-date">
-                    {new Date(item.created_at).toLocaleDateString()}
+                    {item.created_at ? new Date(item.created_at).toLocaleDateString() : 'Недавно'}
                   </div>
                 </div>
                 <div className="news-card-content">
