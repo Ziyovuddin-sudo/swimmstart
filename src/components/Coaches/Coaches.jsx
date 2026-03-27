@@ -21,7 +21,7 @@ const Coaches = ({ onOpenModal }) => {
 
         <div className="coaches-grid-wrapper">
           <div className="coaches-grid">
-            {coaches.map((coach) => (
+            {(Array.isArray(coaches) ? coaches : []).map((coach) => (
               <div key={coach.id} className="coach-card">
                 <div className="coach-image-wrapper">
                   {coach.image ? (

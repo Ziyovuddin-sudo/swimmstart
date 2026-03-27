@@ -9,7 +9,8 @@ const NewsScroll = () => {
 
   if (loading) return <div className="news-scroll-loading">Загрузка...</div>;
   // If there's an error or no news, we can still show the section or hide it gracefully
-  if (error || news.length === 0) {
+  const newsList = Array.isArray(news) ? news : [];
+  if (error || newsList.length === 0) {
     console.log('News not visible due to:', error || 'Empty list');
     return null;
   }
@@ -24,17 +25,17 @@ const NewsScroll = () => {
         </div>
 
         <div className="news-scroll-grid">
-          {news.map((item) => (
+          {newsList.map((item) => (
             <div key={item.id} className="news-scroll-card" onClick={() => navigate('/novosti')}>
               <div className="news-scroll-image">
                 <img src={item.image} alt={item.title} />
                 <div className="news-scroll-date">
-                  {new Date(item.created_at).toLocaleDateString()}
+                  {item.created_at ? new Date(item.created_at).toLocaleDateString() : 'Недавно'}
                 </div>
               </div>
               <div className="news-scroll-content">
                 <h3>{item.title}</h3>
-                <p>{item.description.substring(0, 100)}...</p>
+                <p>{(item.description || '').substring(0, 100)}...</p>
                 <div className="news-scroll-footer">
                   <span className="read-more">Узнать больше →</span>
                 </div>
