@@ -216,7 +216,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 80px);
   }
   .slide-content {
     width: 100%;

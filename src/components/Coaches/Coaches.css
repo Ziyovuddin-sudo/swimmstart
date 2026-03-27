@@ -231,11 +231,12 @@
 
   .section-header {
     padding: 0 20px;
+    margin-bottom: 40px;
     box-sizing: border-box;
   }
 
   .section-title {
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     word-break: break-word;
   }
 
@@ -243,58 +244,38 @@
     max-width: 100%;
     font-size: 1rem;
     padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .coaches-grid-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    line-height: 1.5;
   }
 
   .coaches-grid {
-    padding: 20px 20px 30px;
+    padding: 10px 20px 30px;
     gap: 20px;
-    width: max-content;
   }
 
   .coach-card {
-    flex: 0 0 calc(100vw - 48px);
-    max-width: 380px;
-  }
-
-  .coach-image-wrapper {
-    aspect-ratio: 3 / 4;
+    flex: 0 0 300px; /* Aniqroq o'lcham */
+    max-width: calc(100vw - 40px);
   }
 }
 
 @media (max-width: 480px) {
   .section-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .section-subtitle {
     font-size: 0.8rem;
   }
 
-  .coaches-grid {
-    padding: 16px 16px 24px;
-    gap: 16px;
-  }
-
   .coach-card {
-    flex: 0 0 calc(100vw - 32px);
-    max-width: 340px;
+    flex: 0 0 280px;
   }
-
+  
   .coach-info {
     padding: 20px;
   }
-
+  
   .coach-name {
-    font-size: 1.2rem;
-  }
-
-  .coach-details {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
   }
 }
