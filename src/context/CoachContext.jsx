@@ -2,9 +2,8 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const CoachContext = createContext();
 
-const API_BASE_URL = import.meta.env.DEV 
-  ? 'http://127.0.0.1:8000' 
-  : (import.meta.env.VITE_API_URL || 'https://swimmstart-uz.onrender.com');
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.DEV ? 'http://127.0.0.1:8000' : 'https://swimmstart-uz.onrender.com');
 const API_URL = `${API_BASE_URL}/api/coaches/`;
 
 export const CoachProvider = ({ children }) => {
