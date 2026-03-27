@@ -246,7 +246,38 @@
 
 @media (max-width: 768px) {
   .slider-section { padding: 60px 20px; }
-  .image-container { height: 350px; }
-  .nav-btn { display: none; } /* Better for touch */
-  .card-content { padding: 30px 20px; }
+  .slider-wrapper { min-height: unset; }
+  .image-container { height: 280px; }
+  .nav-btn { display: none; }
+  .card-content {
+    padding: 24px 20px;
+  }
+  .card-content h3 {
+    font-size: 1.4rem;
+  }
+  .card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .slider-header h2 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+  .dot-indicators {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-section { padding: 40px 16px; }
+  .image-container { height: 220px; }
+  .card-content h3 {
+    font-size: 1.2rem;
+  }
+  .card-content p {
+    font-size: 0.9rem;
+  }
+  .slide-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
 }

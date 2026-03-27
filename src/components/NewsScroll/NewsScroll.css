@@ -120,9 +120,28 @@
 
 @media (max-width: 768px) {
   .news-scroll-section {
-    padding: 60px 20px;
+    padding: 60px 0;
+  }
+  .news-scroll-grid {
+    padding: 16px 20px 30px;
+    gap: 20px;
   }
   .news-scroll-card {
-    flex: 0 0 calc(100vw - 60px);
+    flex: 0 0 calc(100vw - 48px);
+  }
+  .news-scroll-image {
+    height: 180px;
+  }
+  .news-scroll-content {
+    padding: 20px;
+  }
+  .news-scroll-content h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-scroll-card {
+    flex: 0 0 calc(100vw - 32px);
   }
 }

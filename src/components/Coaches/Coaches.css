@@ -246,12 +246,24 @@
     box-sizing: border-box;
   }
 
+  .coaches-grid-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .coaches-grid {
     padding: 20px 20px 30px;
+    gap: 20px;
+    width: max-content;
   }
 
   .coach-card {
-    flex: 0 0 calc(100vw - 60px);
+    flex: 0 0 calc(100vw - 48px);
+    max-width: 380px;
+  }
+
+  .coach-image-wrapper {
+    aspect-ratio: 3 / 4;
   }
 }
 
@@ -264,7 +276,25 @@
     font-size: 0.8rem;
   }
 
+  .coaches-grid {
+    padding: 16px 16px 24px;
+    gap: 16px;
+  }
+
   .coach-card {
-    flex: 0 0 calc(100vw - 40px);
+    flex: 0 0 calc(100vw - 32px);
+    max-width: 340px;
+  }
+
+  .coach-info {
+    padding: 20px;
+  }
+
+  .coach-name {
+    font-size: 1.2rem;
+  }
+
+  .coach-details {
+    font-size: 0.9rem;
   }
 }
