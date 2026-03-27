@@ -194,7 +194,7 @@ const AdminDashboard = () => {
               <h3>{showArchive ? 'Архив тренеров' : 'Список тренеров'}</h3>
               <div className="admin-coaches-list">
                 {coachesLoading ? <p>Загрузка...</p> : 
-                  (showArchive ? archivedCoaches : coaches).map(coach => (
+                  (Array.isArray(showArchive ? archivedCoaches : coaches) ? (showArchive ? archivedCoaches : coaches) : []).map(coach => (
                     <div key={coach.id} className="admin-coach-item">
                       <div className="coach-brief">
                         <img src={coach.image} alt={coach.name} />
@@ -213,7 +213,7 @@ const AdminDashboard = () => {
                     </div>
                   ))
                 }
-                {(showArchive ? archivedCoaches : coaches).length === 0 && <p className="empty-msg">Пусто</p>}
+                {(Array.isArray(showArchive ? archivedCoaches : coaches) ? (showArchive ? archivedCoaches : coaches) : []).length === 0 && <p className="empty-msg">Пусто</p>}
               </div>
             </div>
           </div>
@@ -250,13 +250,13 @@ const AdminDashboard = () => {
               <h3>{showArchive ? 'Архив новостей' : 'Список новостей'}</h3>
               <div className="admin-coaches-list">
                 {newsLoading ? <p>Загрузка...</p> : 
-                  (showArchive ? archivedNews : news).map(item => (
+                  (Array.isArray(showArchive ? archivedNews : news) ? (showArchive ? archivedNews : news) : []).map(item => (
                     <div key={item.id} className="admin-coach-item">
                       <div className="coach-brief">
                         <img src={item.image} alt={item.title} />
                         <div>
                           <p className="name">{item.title}</p>
-                          <p className="role" style={{fontSize: '0.8rem'}}>{item.description.substring(0, 50)}...</p>
+                          <p className="role" style={{fontSize: '0.8rem'}}>{(item.description || '').substring(0, 50)}...</p>
                         </div>
                       </div>
                       <div className="item-actions">
@@ -269,7 +269,7 @@ const AdminDashboard = () => {
                     </div>
                   ))
                 }
-                {(showArchive ? archivedNews : news).length === 0 && <p className="empty-msg">Пусто</p>}
+                {(Array.isArray(showArchive ? archivedNews : news) ? (showArchive ? archivedNews : news) : []).length === 0 && <p className="empty-msg">Пусто</p>}
               </div>
             </div>
           </div>
