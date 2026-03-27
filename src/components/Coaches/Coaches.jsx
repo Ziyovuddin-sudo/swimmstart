@@ -24,9 +24,31 @@ const Coaches = ({ onOpenModal }) => {
             {coaches.map((coach) => (
               <div key={coach.id} className="coach-card">
                 <div className="coach-image-wrapper">
-                  <img src={coach.image} alt={coach.name} className="coach-image" />
+                  {coach.image ? (
+                    <img
+                      src={coach.image}
+                      alt={coach.name}
+                      className="coach-image"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <div
+                    className="coach-image-placeholder"
+                    style={{ display: coach.image ? 'none' : 'flex' }}
+                  >
+                    <span className="coach-avatar-letter">
+                      {coach.name ? coach.name[0] : '?'}
+                    </span>
+                  </div>
                   <div className="coach-overlay">
-                    <button className="btn-coach-action" onClick={() => onOpenModal(`Тренировка с ${coach.name}`)}>
+                    <button
+                      className="btn-coach-action"
+                      onClick={() => onOpenModal(`Тренировка с ${coach.name}`)}
+                    >
                       Записаться к тренеру
                     </button>
                   </div>

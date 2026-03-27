@@ -4,7 +4,8 @@ import { useCoaches } from '../../context/CoachContext';
 import { useNews } from '../../context/NewsContext';
 import './Admin.css';
 
-const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:8000' : 'https://swimmstart-uz.onrender.com';
+const API_BASE = import.meta.env.VITE_API_URL || 
+  (import.meta.env.DEV ? 'http://127.0.0.1:8000' : 'https://swimmstart-uz.onrender.com');
 
 const ImageDropZone = ({ value, onChange }) => {
   const [isDragging, setIsDragging] = useState(false);
